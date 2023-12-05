@@ -84,7 +84,7 @@ Spacer(modifier = Modifier.weight(.5f))
         Spacer(modifier = Modifier.weight(.5f))
 
         if(alertIsVisible){
-            Text(text = "This is an alert")
+            ResultDialog( hideDialog = { alertIsVisible = false })
         }
     }
 }
