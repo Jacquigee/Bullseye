@@ -3,12 +3,10 @@ package com.jacquigitau.bullseye
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,10 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jacquigitau.bullseye.ui.TargetSlider
 import com.jacquigitau.bullseye.ui.theme.BullseyeTheme
 
 /**
@@ -39,6 +37,7 @@ fun GameScreen() {
     var alertIsVisible by remember {
         mutableStateOf(false)
     }
+    var sliderChange by remember { mutableStateOf(value = 0.5f) }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -54,25 +53,12 @@ Spacer(modifier = Modifier.weight(.5f))
             modifier = Modifier.weight(9f)
         ) {
             Text(text = stringResource(R.string.instruction_text))
-            Text(text = stringResource(R.string.target_vaue), fontSize = 30.sp, fontWeight = FontWeight.Bold)
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = stringResource(R.string.min_value),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(start = 16.dp)
-                )
-                Slider(
-                    value = 0.5f,
-                    valueRange = 0.01f..1f,
-                    onValueChange = {},
-                    modifier = Modifier.weight(1f)
-                )
-                Text(
-                    text = stringResource(R.string.max_value),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(end = 16.dp)
-                )
-            }
+            Text(
+                text = stringResource(R.string.target_vaue),
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold
+            )
+            TargetSlider(value = sliderChange, valueChanged = { value -> sliderChange = value })
 
             Button(onClick = {
                 alertIsVisible = true
