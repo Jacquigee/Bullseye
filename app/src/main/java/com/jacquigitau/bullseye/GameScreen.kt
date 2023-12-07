@@ -38,15 +38,16 @@ fun GameScreen() {
         mutableStateOf(false)
     }
     var sliderChange by remember { mutableStateOf(value = 0.5f) }
+
+    val sliderToInt = (sliderChange * 100).toInt()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
-
     ) {
-Spacer(modifier = Modifier.weight(.5f))
+        Spacer(modifier = Modifier.weight(.5f))
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly,
@@ -69,8 +70,11 @@ Spacer(modifier = Modifier.weight(.5f))
         }
         Spacer(modifier = Modifier.weight(.5f))
 
-        if(alertIsVisible){
-            ResultDialog( hideDialog = { alertIsVisible = false })
+        if(alertIsVisible) {
+            ResultDialog(
+                hideDialog = { alertIsVisible = false },
+                sliderValue = sliderToInt
+            )
         }
     }
 }

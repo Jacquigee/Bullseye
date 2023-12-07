@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun ResultDialog(
     hideDialog: () -> Unit,
+    sliderValue : Int,
     modifier: Modifier = Modifier
 ) {
     AlertDialog(onDismissRequest = { hideDialog() }, confirmButton = {
@@ -26,9 +27,11 @@ fun ResultDialog(
         }
     }, title = { Text(text = stringResource(R.string.dialog_title)) }, text = {
         Text(
-            text = stringResource(
-                R.string.dialog_text
-            )
+//            text = stringResource(
+//                R.string.dialog_text
+//            )
+
+            text = "The slider value is $sliderValue"
         )
     })
 }
