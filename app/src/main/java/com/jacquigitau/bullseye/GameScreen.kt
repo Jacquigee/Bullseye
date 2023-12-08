@@ -44,7 +44,17 @@ fun GameScreen() {
     val sliderToInt = (sliderChange * 100).toInt()
 
     fun pointsForCurrentRounds(): Int{
-        return 999
+        val maxScore = 100
+        val difference: Int
+
+        if (sliderToInt > targetValue){
+            difference = sliderToInt - targetValue
+        } else if (targetValue > sliderToInt){
+            difference = targetValue - sliderToInt
+        } else {
+            difference = 0
+        }
+        return maxScore - difference
     }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
