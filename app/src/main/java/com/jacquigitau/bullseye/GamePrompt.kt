@@ -8,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -20,9 +19,8 @@ import androidx.compose.ui.unit.sp
  * TIME        : 4:23 AM
  */
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun GamePrompt(modifier: Modifier = Modifier) {
+fun GamePrompt(targetValue: Int, modifier: Modifier = Modifier) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -30,7 +28,8 @@ fun GamePrompt(modifier: Modifier = Modifier) {
     ) {
         Text(text = stringResource(R.string.instruction_text))
         Text(
-            text = stringResource(R.string.target_vaue),
+//            text = "$targetValue",
+            text = targetValue.toString(),
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(8.dp)

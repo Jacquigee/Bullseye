@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jacquigitau.bullseye.ui.TargetSlider
 import com.jacquigitau.bullseye.ui.theme.BullseyeTheme
+import kotlin.random.Random
 
 /**
  * PROJECT NAME: Bullseye
@@ -36,8 +37,15 @@ fun GameScreen() {
         mutableStateOf(false)
     }
     var sliderChange by rememberSaveable { mutableStateOf(value = 0.5f) }
+    var targetValue by rememberSaveable {
+        mutableStateOf(Random.nextInt(1,100))
+    }
 
     val sliderToInt = (sliderChange * 100).toInt()
+
+    fun pointsForCurrentRounds(): Int{
+        return 999
+    }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -51,7 +59,7 @@ fun GameScreen() {
             verticalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.weight(9f)
         ) {
-            GamePrompt()
+            GamePrompt(targetValue = targetValue)
             TargetSlider(value = sliderChange, valueChanged = { value -> sliderChange = value })
 
             Button(onClick = {
@@ -66,7 +74,8 @@ fun GameScreen() {
         if(alertIsVisible) {
             ResultDialog(
                 hideDialog = { alertIsVisible = false },
-                sliderValue = sliderToInt
+                sliderValue = sliderToInt,
+                points = pointsForCurrentRounds()
             )
         }
     }

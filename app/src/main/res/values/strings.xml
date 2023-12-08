@@ -7,5 +7,5 @@
     <string name="text_button">Hit Me</string>
     <string name="button_dialog_text">Awesome!</string>
     <string name="dialog_title">Hello there!</string>
-    <string name="dialog_text">This is my first pop up</string>
+    <string name="dialog_text">The slider\'s value is %1$d. \nYou scored %2$d points this round.</string>
 </resources>
