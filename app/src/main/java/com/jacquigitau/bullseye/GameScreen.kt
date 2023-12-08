@@ -53,12 +53,7 @@ fun GameScreen() {
             verticalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.weight(9f)
         ) {
-            Text(text = stringResource(R.string.instruction_text))
-            Text(
-                text = stringResource(R.string.target_vaue),
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold
-            )
+            GamePrompt()
             TargetSlider(value = sliderChange, valueChanged = { value -> sliderChange = value })
 
             Button(onClick = {
