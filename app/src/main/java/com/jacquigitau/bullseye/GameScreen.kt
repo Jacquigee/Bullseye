@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jacquigitau.bullseye.ui.TargetSlider
 import com.jacquigitau.bullseye.ui.theme.BullseyeTheme
+import kotlin.math.abs
 import kotlin.random.Random
 
 /**
@@ -37,7 +38,7 @@ fun GameScreen() {
         mutableStateOf(false)
     }
     var sliderChange by rememberSaveable { mutableStateOf(value = 0.5f) }
-    var targetValue by rememberSaveable {
+    val targetValue by rememberSaveable {
         mutableStateOf(Random.nextInt(1,100))
     }
 
@@ -45,15 +46,8 @@ fun GameScreen() {
 
     fun pointsForCurrentRounds(): Int{
         val maxScore = 100
-        val difference: Int
+        val difference = abs(targetValue - sliderToInt)
 
-        if (sliderToInt > targetValue){
-            difference = sliderToInt - targetValue
-        } else if (targetValue > sliderToInt){
-            difference = targetValue - sliderToInt
-        } else {
-            difference = 0
-        }
         return maxScore - difference
     }
     Column(
