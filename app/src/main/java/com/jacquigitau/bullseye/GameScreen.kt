@@ -11,15 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.jacquigitau.bullseye.ui.TargetSlider
 import com.jacquigitau.bullseye.ui.theme.BullseyeTheme
 
@@ -34,10 +32,10 @@ import com.jacquigitau.bullseye.ui.theme.BullseyeTheme
 @Composable
 fun GameScreen() {
 
-    var alertIsVisible by remember {
+    var alertIsVisible by rememberSaveable {
         mutableStateOf(false)
     }
-    var sliderChange by remember { mutableStateOf(value = 0.5f) }
+    var sliderChange by rememberSaveable { mutableStateOf(value = 0.5f) }
 
     val sliderToInt = (sliderChange * 100).toInt()
     Column(
