@@ -78,10 +78,11 @@ fun GameScreen() {
                 Text(text = stringResource(R.string.text_button))
                 Log.i("Alert showing?", alertIsVisible.toString())
             }
+
+            GameDetail(modifier = Modifier.fillMaxWidth())
         }
         Spacer(modifier = Modifier.weight(.5f))
 
-        GameDetail(modifier = Modifier.fillMaxWidth())
 
         if(alertIsVisible) {
             ResultDialog(
