@@ -40,15 +40,17 @@ import kotlin.random.Random
 @Composable
 fun GameScreen() {
 
+    fun newTargetValue() = Random.nextInt(1, 100)
+
     var alertIsVisible by rememberSaveable {
         mutableStateOf(false)
     }
-    var sliderChange by rememberSaveable { mutableStateOf(value = 0.5f) }
+    var sliderValue by rememberSaveable { mutableStateOf(value = 0.5f) }
     var targetValue by rememberSaveable {
-        mutableStateOf(Random.nextInt(1, 100))
+        mutableStateOf(newTargetValue())
     }
 
-    val sliderToInt = (sliderChange * 100).toInt()
+    val sliderToInt = (sliderValue * 100).toInt()
 
     var totalScore by rememberSaveable {
         mutableStateOf(0)
@@ -88,6 +90,13 @@ fun GameScreen() {
 
         return title
     }
+
+    fun startNewGame(){
+        totalScore = 0
+        currentRound = 1
+        sliderValue = 0.5f
+        targetValue = newTargetValue()
+    }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -102,7 +111,7 @@ fun GameScreen() {
             modifier = Modifier.weight(9f)
         ) {
             GamePrompt(targetValue = targetValue)
-            TargetSlider(value = sliderChange, valueChanged = { value -> sliderChange = value })
+            TargetSlider(value = sliderValue, valueChanged = { value -> sliderValue = value })
 
             Button(onClick = {
                 alertIsVisible = true
@@ -115,6 +124,7 @@ fun GameScreen() {
             GameDetail(
                 totalScore = totalScore,
                 round = currentRound,
+                onStartOver = {startNewGame()},
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -129,7 +139,7 @@ fun GameScreen() {
                 points = pointsForCurrentRound(),
                 onRoundValue = {
                     currentRound += 1
-                    targetValue = Random.nextInt(1, 100)
+                    targetValue = newTargetValue()
                 },
 
                 )

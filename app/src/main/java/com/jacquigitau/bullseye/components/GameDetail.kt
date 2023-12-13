@@ -23,13 +23,18 @@ import com.jacquigitau.bullseye.R
  */
 
 @Composable
-fun GameDetail(modifier: Modifier = Modifier, totalScore: Int, round: Int){
-    Row (
+fun GameDetail(
+    modifier: Modifier = Modifier,
+    totalScore: Int,
+    round: Int,
+    onStartOver: () -> Unit
+) {
+    Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = modifier
     ) {
-        Button(onClick = { }) {
+        Button(onClick = { onStartOver() }) {
             Text(text = stringResource(R.string.start_over))
         }
 
@@ -56,5 +61,5 @@ fun GameInfo(label: String, value:Int = 0){
 @Preview(showBackground = true)
 @Composable
 fun GameDetailPreview(){
-    GameDetail(totalScore = 0, round = 1)
+    GameDetail(totalScore = 0, round = 1, onStartOver = {})
 }
