@@ -23,7 +23,7 @@ import com.jacquigitau.bullseye.R
  */
 
 @Composable
-fun GameDetail(modifier: Modifier = Modifier){
+fun GameDetail(modifier: Modifier = Modifier, totalScore: Int){
     Row (
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -33,7 +33,7 @@ fun GameDetail(modifier: Modifier = Modifier){
             Text(text = stringResource(R.string.start_over))
         }
 
-        GameInfo(label = stringResource(R.string.score), value = 0)
+        GameInfo(label = stringResource(R.string.score), value = totalScore)
         GameInfo(label = stringResource(R.string.round), value = 1)
 
         Button(onClick = { }) {
@@ -56,5 +56,5 @@ fun GameInfo(label: String, value:Int = 0){
 @Preview(showBackground = true)
 @Composable
 fun GameDetailPreview(){
-    GameDetail()
+    GameDetail(totalScore = 0)
 }
