@@ -64,8 +64,15 @@ fun GameScreen() {
     fun pointsForCurrentRound(): Int {
         val maxScore = 100
         val difference = differenceAmount()
+        var bonus = 0
 
-        return maxScore - difference
+        if (difference == 0) {
+            bonus = 100
+        } else if (difference == 1) {
+            bonus = 50
+        }
+
+        return (maxScore - difference) + bonus
     }
 
     fun alertTitle(): Int{
