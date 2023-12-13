@@ -19,20 +19,30 @@ import com.jacquigitau.bullseye.R
 @Composable
 fun ResultDialog(
     hideDialog: () -> Unit,
-    sliderValue : Int,
+    onRoundValue: () -> Unit,
+    sliderValue: Int,
     points: Int,
     modifier: Modifier = Modifier
 ) {
-    AlertDialog(onDismissRequest = { hideDialog() }, confirmButton = {
-        TextButton(onClick = { hideDialog() }) {
-            Text(stringResource(R.string.button_dialog_text))
-        }
-    }, title = { Text(text = stringResource(R.string.dialog_title)) }, text = {
-        Text(
-            text = stringResource(
-                R.string.dialog_text, sliderValue, points
-            )
+    AlertDialog(
+        onDismissRequest = {
+            hideDialog()
+            onRoundValue()
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    hideDialog()
+                    onRoundValue()
+                }) {
+                Text(stringResource(R.string.button_dialog_text))
+            }
+        }, title = { Text(text = stringResource(R.string.dialog_title)) }, text = {
+            Text(
+                text = stringResource(
+                    R.string.dialog_text, sliderValue, points
+                )
 
-        )
+            )
     })
 }

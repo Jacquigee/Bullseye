@@ -44,8 +44,8 @@ fun GameScreen() {
         mutableStateOf(false)
     }
     var sliderChange by rememberSaveable { mutableStateOf(value = 0.5f) }
-    val targetValue by rememberSaveable {
-        mutableStateOf(Random.nextInt(1,100))
+    var targetValue by rememberSaveable {
+        mutableStateOf(Random.nextInt(1, 100))
     }
 
     val sliderToInt = (sliderChange * 100).toInt()
@@ -54,8 +54,12 @@ fun GameScreen() {
         mutableStateOf(0)
     }
 
+    var currentRound by rememberSaveable {
+        mutableStateOf(1)
+    }
+
     // Function to implement logic that calculates points for the current round.
-    fun pointsForCurrentRound(): Int{
+    fun pointsForCurrentRound(): Int {
         val maxScore = 100
         val difference = abs(targetValue - sliderToInt)
 
@@ -87,6 +91,7 @@ fun GameScreen() {
 
             GameDetail(
                 totalScore = totalScore,
+                round = currentRound,
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -97,8 +102,13 @@ fun GameScreen() {
             ResultDialog(
                 hideDialog = { alertIsVisible = false },
                 sliderValue = sliderToInt,
-                points = pointsForCurrentRound()
-            )
+                points = pointsForCurrentRound(),
+                onRoundValue = {
+                    currentRound += 1
+                    targetValue = Random.nextInt(1, 100)
+                },
+
+                )
         }
     }
 }
