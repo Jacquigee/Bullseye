@@ -18,6 +18,7 @@ import com.jacquigitau.bullseye.R
 
 @Composable
 fun ResultDialog(
+    dialogTitle: Int,
     hideDialog: () -> Unit,
     onRoundValue: () -> Unit,
     sliderValue: Int,
@@ -37,7 +38,7 @@ fun ResultDialog(
                 }) {
                 Text(stringResource(R.string.button_dialog_text))
             }
-        }, title = { Text(text = stringResource(R.string.dialog_title)) }, text = {
+        }, title = { Text(text = stringResource(id = dialogTitle)) }, text = {
             Text(
                 text = stringResource(
                     R.string.dialog_text, sliderValue, points
