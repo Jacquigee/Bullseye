@@ -53,7 +53,6 @@ fun GameDetail(
                 Icons.Filled.Refresh,
                 contentDescription = stringResource(id = R.string.start_over)
             )
-
         }
 
         GameInfo(label = stringResource(R.string.score), value = totalScore)

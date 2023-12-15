@@ -26,7 +26,7 @@ import com.jacquigitau.bullseye.R
 import com.jacquigitau.bullseye.components.GameDetail
 import com.jacquigitau.bullseye.components.GamePrompt
 import com.jacquigitau.bullseye.components.ResultDialog
-import com.jacquigitau.bullseye.ui.TargetSlider
+import com.jacquigitau.bullseye.components.TargetSlider
 import com.jacquigitau.bullseye.ui.theme.BullseyeTheme
 import kotlin.math.abs
 import kotlin.random.Random
@@ -113,7 +113,9 @@ fun GameScreen() {
             modifier = Modifier.weight(9f)
         ) {
             GamePrompt(targetValue = targetValue)
-            TargetSlider(value = sliderValue, valueChanged = { value -> sliderValue = value })
+            TargetSlider(
+                value = sliderValue,
+                valueChanged = { value -> sliderValue = value })
 
             Button(onClick = {
                 alertIsVisible = true
