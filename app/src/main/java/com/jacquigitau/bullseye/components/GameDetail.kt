@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material3.Button
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
@@ -59,8 +59,15 @@ fun GameDetail(
         GameInfo(label = stringResource(R.string.score), value = totalScore)
         GameInfo(label = stringResource(R.string.round), value = round)
 
-        Button(onClick = { }) {
-            Text(text = stringResource(R.string.info))
+        FilledIconButton(
+            onClick = { }, colors = IconButtonDefaults.filledIconButtonColors(
+                containerColor = MaterialTheme.colorScheme.tertiary
+            ), modifier = Modifier.size(50.dp)
+        ) {
+            Icon(
+                Icons.Filled.Info,
+                contentDescription = stringResource(id = R.string.info)
+            )
         }
     }
 }
