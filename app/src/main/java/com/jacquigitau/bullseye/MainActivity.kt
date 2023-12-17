@@ -37,10 +37,16 @@ fun MainScreen(){
     val navController = rememberNavController()
     
     NavHost(navController = navController, startDestination = "gameScreen" ){
-        composable("gameScreen"){ GameScreen(
-            onNavigateToAbout = {navController.navigate("about")}
-        )}
-        composable("about"){ AboutScreen()}
+        composable("gameScreen") {
+            GameScreen(
+                onNavigateToAbout = { navController.navigate("about") }
+            )
+        }
+        composable("about") {
+            AboutScreen(
+                onNavigateBack = { navController.navigateUp() }
+            )
+        }
     }
 
 }
