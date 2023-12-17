@@ -44,7 +44,9 @@ import kotlin.random.Random
  */
 
 @Composable
-fun GameScreen() {
+fun GameScreen(
+    onNavigateToAbout: () -> Unit
+) {
 
     fun newTargetValue() = Random.nextInt(1, 100)
 
@@ -144,6 +146,7 @@ fun GameScreen() {
                     totalScore = totalScore,
                     round = currentRound,
                     onStartOver = { startNewGame() },
+                    onNavigateToAbout = onNavigateToAbout,
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -177,6 +180,6 @@ fun GameScreen() {
 @Composable
 fun GameScreenPreview() {
     BullseyeTheme {
-        GameScreen()
+        GameScreen(onNavigateToAbout = {})
     }
 }

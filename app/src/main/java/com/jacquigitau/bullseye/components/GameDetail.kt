@@ -35,7 +35,8 @@ fun GameDetail(
     modifier: Modifier = Modifier,
     totalScore: Int,
     round: Int,
-    onStartOver: () -> Unit
+    onStartOver: () -> Unit,
+    onNavigateToAbout: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -59,7 +60,7 @@ fun GameDetail(
         GameInfo(label = stringResource(R.string.round), value = round)
 
         FilledIconButton(
-            onClick = { }, colors = IconButtonDefaults.filledIconButtonColors(
+            onClick = { onNavigateToAbout() }, colors = IconButtonDefaults.filledIconButtonColors(
                 containerColor = MaterialTheme.colorScheme.tertiary
             ), modifier = Modifier.size(50.dp)
         ) {
@@ -88,5 +89,5 @@ fun GameInfo(label: String, value:Int = 0){
 @Preview(showBackground = true)
 @Composable
 fun GameDetailPreview(){
-    GameDetail(totalScore = 0, round = 1, onStartOver = {})
+    GameDetail(totalScore = 0, round = 1, onStartOver = {}, onNavigateToAbout = {})
 }
